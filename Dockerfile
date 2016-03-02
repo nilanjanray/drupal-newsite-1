@@ -57,11 +57,19 @@ RUN yum install git -y
 # We may add the steps to configure .ssh and global config
 # git installation & configuration
 
+
 # Checkout latest version of Drupal
 ADD composer.json /
 RUN mkdir -p /opt/drupal
+
+# Checkout a mock branch which consists basic struture of Drupal excluding core.
+RUN cd /opt/drupal ; git clone -b mock-branch https://github.com/nilanjanray/drupal-newsite-1.git docroot
 RUN mv /composer.json /opt/drupal
 RUN cd /opt/drupal ; composer install
 
+# Add the soft link for drupal console and drush.
+RUN cd /usr/bin ; ln -s /opt/drupal/vendor/drupal/console/bin/drupal drupal ; ln -s /opt/drupal/vendor/drush/drush/drush drush
+#RUN cd /opt/drupal/docroot ; git clone -b git@github.com:nilanjanray/drupal-newsite-1.git 
+RUN cd /var/www/html ; ln -s /opt/drupal/docroot docroot
 #composer update
 # @TODO: We may need to softlink to the docroot of apache, lets see first.
