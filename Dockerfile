@@ -62,10 +62,12 @@ RUN yum install git -y
 ADD composer.json /
 RUN mkdir -p /opt/drupal
 
-# Checkout a mock branch which consists basic struture of Drupal excluding core.
-RUN cd /opt/drupal ; git clone -b mock-branch https://github.com/nilanjanray/drupal-newsite-1.git docroot
 RUN mv /composer.json /opt/drupal
 RUN cd /opt/drupal ; composer install
+
+# Checkout a mock branch which consists basic struture of Drupal excluding core.
+RUN cd /opt/drupal/docroot ; git init ; git remote add origin https://github.com/nilanjanray/drupal-newsite-1.git ; git fetch origin ; git checkout mock-branch
+
 
 # Add the soft link for drupal console and drush.
 RUN cd /usr/bin ; ln -s /opt/drupal/vendor/drupal/console/bin/drupal drupal ; ln -s /opt/drupal/vendor/drush/drush/drush drush
