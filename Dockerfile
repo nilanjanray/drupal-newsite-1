@@ -10,6 +10,7 @@ RUN yum install wget -y
 
 # Install my favourite editor.
 RUN yum install vim-X11.x86_64 vim-common.x86_64 vim-enhanced.x86_64 vim-minimal.x86_64 -y
+
 # Building repo
 
 # For apache Centos -7/RHEL 7
@@ -20,6 +21,8 @@ RUN yum install vim-X11.x86_64 vim-common.x86_64 vim-enhanced.x86_64 vim-minimal
 
 # For MySQL
 #RUN rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+# Need this repo for apache 2.2.24
+RUN rpm -U http://powerstack.org/powerstack-release.rpm
 # Building repo ends here
 
 
@@ -33,7 +36,7 @@ RUN yum --enablerepo="base" install apr.x86_64 apr-util.x86_64 -y
 # Dependency resolved for apache need to fix.
 RUN yum install mailcap redhat-logos-60.0.14-12.el6.centos.noarch -y
 #RUN yum --disablerepo="*" --enablerepo="ius" install httpd24u.x86_64 httpd24u-tools.x86_64 -y 
-RUN yum --enablerepo="updates" install httpd.x86_64  httpd-tools.x86_64 -y
+RUN yum --enablerepo="powerstack" install httpd.x86_64  httpd-tools.x86_64 -y
 
 # PHP Installation
 
