@@ -66,7 +66,7 @@ ADD composer.json /
 RUN mkdir -p /opt/drupal
 
 RUN mv /composer.json /opt/drupal
-RUN cd /opt/drupal ; composer install
+RUN composer install --working-dir=/opt/drupal/docroot -v
 
 # Checkout a mock branch which consists basic struture of Drupal excluding core.
 RUN cd /opt/drupal/docroot ; git init ; git remote add origin https://github.com/nilanjanray/drupal-newsite-1.git ; git fetch origin ; git checkout mock-branch
@@ -74,6 +74,9 @@ RUN cd /opt/drupal/docroot ; git init ; git remote add origin https://github.com
 
 # Add the soft link for drupal console and drush.
 RUN cd /usr/bin ; ln -s /opt/drupal/vendor/drupal/console/bin/drupal drupal ; ln -s /opt/drupal/vendor/drush/drush/drush drush
+
+# Run individual composer for drush & drupal-console as well.
+RUN composer install --working-dir=/opt/drupal/vendor/drupal/console -v ; composer install --working-dir=/opt/drupal/vendor/drush/drush -v
 #RUN cd /opt/drupal/docroot ; git clone -b git@github.com:nilanjanray/drupal-newsite-1.git 
 RUN cd /var/www/html ; ln -s /opt/drupal/docroot docroot
 #composer update
