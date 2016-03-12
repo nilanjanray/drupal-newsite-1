@@ -68,7 +68,7 @@ ADD composer.json /
 RUN mkdir -p /opt/drupal
 
 RUN mv /composer.json /opt/drupal
-RUN composer install --working-dir=/opt/drupal -v
+RUN composer update --working-dir=/opt/drupal --prefer-dist --profile
 
 # Checkout a mock branch which consists basic struture of Drupal excluding core.
 RUN cd /opt/drupal/docroot ; git init ; git remote add origin https://github.com/nilanjanray/drupal-newsite-1.git ; git fetch origin ; git checkout mock-branch
@@ -78,10 +78,10 @@ RUN cd /opt/drupal/docroot ; git init ; git remote add origin https://github.com
 RUN cd /usr/bin ; ln -s /opt/drupal/vendor/drupal/console/bin/drupal drupal ; ln -s /opt/drupal/vendor/drush/drush/drush drush
 
 # Run individual composer for drush & drupal-console as well.
-RUN composer install --working-dir=/opt/drupal/vendor/drupal/console -v ; composer install --working-dir=/opt/drupal/vendor/drush/drush -v
+RUN composer update --working-dir=/opt/drupal/vendor/drupal/console --prefer-dist --profile ; composer update --working-dir=/opt/drupal/vendor/drush/drush --prefer-dist --profile
 #RUN cd /opt/drupal/docroot ; git clone -b git@github.com:nilanjanray/drupal-newsite-1.git 
 RUN cd /var/www/html ; ln -s /opt/drupal/docroot drupal
 
 # Vendor's for Drupal
-RUN composer install --working-dir=/opt/drupal/docroot -v
+RUN composer update --working-dir=/opt/drupal/docroot --prefer-dist --profile
 # @TODO: We may need to softlink to the docroot of apache, lets see first.
