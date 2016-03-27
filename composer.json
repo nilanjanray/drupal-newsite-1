@@ -1,6 +1,9 @@
 {
+  "name": "Scafolding/drupal",
   "require": {
-    "drupal/core": "8.0.*"
+    "composer/installers": "~1.0",
+    "drupal/core": "8.0.*",
+    "drupal/devel": "8.1.*@dev"
   },
 
  "repositories": [
@@ -11,12 +14,13 @@
   ],
 
   "require-dev": {
-    "drush/drush": "8.0.3",
-    "drupal/console": "^0.10.12"
+    "drush/drush": "8.0.*",
+    "drupal/console": "0.10.*"
   },
   "extra": {
     "installer-paths": {
-      "docroot/core": ["type:drupal-core"]
+      "docroot/core": ["type:drupal-core"],
+      "docroot/modules/contrib/{$name}": ["type:drupal-module"]
     }
   }
 }
