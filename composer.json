@@ -2,8 +2,10 @@
   "name": "Scafolding/drupal",
   "require": {
     "composer/installers": "~1.0",
-    "drupal/core": "8.0.*",
-    "drupal/devel": "8.1.*@dev"
+    "cweagans/composer-patches": "~1.0",
+    "drupal/core": "8.1.*@dev",
+    "drupal/devel": "8.1.*@dev",
+    "drupal/admin_toolbar": "8.1.*"
   },
 
  "repositories": [
