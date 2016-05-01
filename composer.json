@@ -3,9 +3,9 @@
   "require": {
     "composer/installers": "~1.0",
     "cweagans/composer-patches": "~1.0",
-    "drupal/core": "8.1.*@dev",
+    "drupal/core": "^8.1.0",
     "drupal/devel": "8.1.*@dev",
-    "drupal/admin_toolbar": "8.1.*"
+    "drupal/admin_toolbar": "^8.1.0"
   },
 
  "repositories": [
@@ -16,8 +16,8 @@
   ],
 
   "require-dev": {
-    "drush/drush": "8.0.*",
-    "drupal/console": "0.10.*"
+    "drush/drush": "^8.1.0",
+    "drupal/console": "1.0.0-alpha1"
   },
   "extra": {
     "installer-paths": {
