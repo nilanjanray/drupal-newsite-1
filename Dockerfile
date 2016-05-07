@@ -44,6 +44,9 @@ RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf
 # PHP Installation
 RUN yum  install mod_php70u.x86_64 php70u-common.x86_64 php70u-cli.x86_64 php70u-mysqlnd.x86_64 php70u-pdo.x86_64 php70u-pear.noarch php70u-gd.x86_64 php70u-fpm.x86_64 php70u-mcrypt.x86_64 php70u-mbstring.x86_64 php70u-json.x86_64 php70u-opcache.x86_64 php70u-xml.x86_64 php70u-xmlrpc.x86_64 php70u-bcmath.x86_64 php70u-pgsql.x86_64 php70u-ldap.x86_64 -y
 
+# TAR install
+RUN yum install tar -y
+
 # Composer Installation
 RUN curl -sS https://getcomposer.org/installer | php
 
