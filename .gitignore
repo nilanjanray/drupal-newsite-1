@@ -15,8 +15,13 @@
 vendor
 
 # Ignore configuration files that may contain sensitive information.
-sites/*/settings*.php
-sites/*/services*.yml
+#sites/*/settings*.php
+#sites/*/services*.yml
+
+# Composer.lock need not to be checked, new fresh built will be taken
+# from docker it-self.
+
+composer.lock
 
 # Ignore paths that contain user-generated content.
 sites/*/files
