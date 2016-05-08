@@ -88,3 +88,10 @@ RUN cd /var/www/html ; ln -s /opt/drupal/docroot drupal
 # Vendor's for Drupal
 RUN composer update --working-dir=/opt/drupal/docroot --prefer-dist --profile
 # @TODO: We may need to softlink to the docroot of apache, lets see first.
+
+# Drush specific operations.
+# Add all the bash scripts of drush to ~/.bashrc & generate ~/.drush.
+RUN drush init -y
+
+# Add alias to .drush.
+ADD alias.drushrc.php /root/.drush
